@@ -7,10 +7,12 @@
 
 class Application {
 public: 
-Application();
+Application(int appId);
 
 std::string getTitle();
 std::string getBody();
+void setTitle(std::string title);
+void setBody(std::string body);
 
 private: 
     int appID;

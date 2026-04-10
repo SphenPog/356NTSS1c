@@ -8,15 +8,20 @@
 
 class User {
 public: 
-User();
+std::string username;
 
-bool checkPass();
-Application getApps();
-void addApp(std::string title, std::string body);
+User(std::string username, std::string password, int admin);
+
+bool checkPass(std::string passAtmpt);
+Application[] getApps();
+void addApp(int appId, std::string title, std::string body);
 void removeApp(int index);
 
+
+//std::string getEmail();
+//bool setEmail(std::string email);
+
 private: 
-    std::string username;
     std::string password;
     std::string email;
     int phone;
