@@ -4,16 +4,17 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Application.h"
 
 class User {
 public: 
 std::string username;
 
-User(std::string username, std::string password, int admin);
+User(std::string username, std::string password, bool admin);
 
 bool checkPass(std::string passAtmpt);
-Application[] getApps();
+std::vector<Application> getApps();
 void addApp(int appId, std::string title, std::string body);
 void removeApp(int index);
 
@@ -26,7 +27,7 @@ private:
     std::string email;
     int phone;
     bool adminFlag;
-    Application applications[];
+    std::vector<Application> applications;
 };
 
 #endif //_USER_H

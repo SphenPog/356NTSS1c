@@ -8,7 +8,7 @@
 
 using namespace std;
 
-User::User(std::string username, std::string password, int admin) {
+User::User(std::string username, std::string password, bool admin) {
     this->username = username;
     this->password = password;
     this->adminFlag = admin;
