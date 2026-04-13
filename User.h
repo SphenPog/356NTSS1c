@@ -18,7 +18,7 @@ std::vector<Application> getApps();
 void addApp(int appId, std::string title, std::string body);
 void removeApp(int index);
 
-
+//getters and setters for email and phone number, not currently used but may be in the future
 //std::string getEmail();
 //bool setEmail(std::string email);
 

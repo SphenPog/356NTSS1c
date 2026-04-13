@@ -51,9 +51,12 @@ void viewApps(User* user) {
 
     cout << "press 0 to return." << endl;
     cin >> choice;
-    if (choice != 0) {
-        choice = 0;
-    }
+    if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            choice = 0;
+        }
     
 }
 
