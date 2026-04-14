@@ -8,6 +8,7 @@
 
 using namespace std;
 
+//constructor
 User::User(std::string username, std::string password, bool admin) {
     this->username = username;
     this->password = password;
@@ -22,10 +23,12 @@ bool User::checkPass(std::string passAtmpt) {
     }
 }
 
+//getter
 std::vector<Application> User::getApps() {
     return applications;
 }
 
+//modify and append private vector of applications
 void User::addApp(int appId, std::string title, std::string body) {
     Application* app = new Application(appId);
     app->setTitle(title);

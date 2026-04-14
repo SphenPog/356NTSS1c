@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//constructor
 Application::Application(int appId) {
     appID = appId;
     title = "empty.";
@@ -13,6 +14,7 @@ Application::Application(int appId) {
 
 }
 
+//getters and setters for private variables
 string Application::getTitle() {
     return this->title;
 }

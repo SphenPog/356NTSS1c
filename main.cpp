@@ -10,10 +10,31 @@ User* users[10];
 User* currentUser = nullptr;
 std::vector<Application> apps;
 
+User* createAccount(string username, string password) {
+    cout << "Create New Username: " << endl;
+    cin >> username;
+    cout << "Create Password: " << endl;
+    cin >> password;
+
+    User* newUser = new User(username, password, false);
+    for (int i = 0; i < 10; i++) {
+        if (users[i] == nullptr) {
+            users[i] = newUser;
+            return newUser;
+        }
+    }
+    cout << "account limit reached." << endl;
+    return nullptr;
+}
+
 User* promptLogin() {
-    cout << "Enter Username:" << endl;
+    cout << "Enter Username or press 1 to create an account: " << endl;
     string username;
     cin >> username;
+
+    if (username == "1") {
+        return createAccount(username, username);
+    } else { 
 
     for (int i = 0; i < 10; i++ ) {
         if (users[i] != nullptr)
@@ -24,6 +45,7 @@ User* promptLogin() {
         }
     }
     cout << "username not found." << endl;
+    }
     return nullptr;
 }
 
@@ -78,12 +100,6 @@ void createApp (User* user) {
 
 
 int main() {
-/*
-        add application
-            ask for title
-            ask for body
-*/
-
     //setting up basic premade accounts for tests
     static User* adminUser = new User("admin", "password", true);
     static User* basicUser = new User("bob", "bob123", false);
@@ -93,23 +109,30 @@ int main() {
 
     basicUser->addApp(1, "test", "this is a test for applications!!");
 
+    //prompt user for login information and verify password
     while (currentUser == nullptr) {
         currentUser = promptLogin();
     }
 
     string password;
     cout << "enter password:" <<endl;
-    cin >> password;
+    while (!currentUser->checkPass(password))
+    {
+        cin >> password;
 
-    if (!currentUser->checkPass(password)) {
-        cout << "wrong password entered.";
-        return -1;
-    } 
+        if (!currentUser->checkPass(password)) {
+        cout << "wrong password entered." << endl
+             << "try again." << endl;
+        } else {
+            break;
+        }
+    }
 
     int choice = 0;
 
     cout << "login successful!" << endl;    
 
+    //prompt user for what they want to do until they choose to log out
     while (choice != 3) {
 
         cout << "Press the following buttons to make a selection. (1-4)" << endl
@@ -125,7 +148,7 @@ int main() {
             choice = 0;
         }
         
-
+        //handle user input and call appropriate functions
         switch (choice)
         {
         case 1:
